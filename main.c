@@ -65,7 +65,7 @@ void main()
     SHOW_SPRITES;
     DISPLAY_ON;
 
-    spawnTetromino(&activePiece, 2, spawnPositionx, spawnPositiony);
+    spawnTetromino(&activePiece, 6, spawnPositionx, spawnPositiony);
 
     while (1) {
         if (keyDown) 

@@ -177,13 +177,13 @@ AREA .  .ABS.
 		l__BASE	019A
 		l__HOME	01A8
 		s__CODE	0200
-		l__CODE	1CEF
-		s__HOME	1EEF
-		s__BASE	2097
-		s__LIT	2231
-		s__GSINIT	2231
-		s__GSINITTAIL	22E9
-		s__GSFINAL	22EA
+		l__CODE	35D3
+		s__HOME	37D3
+		s__BASE	397B
+		s__LIT	3B15
+		s__GSINIT	3B15
+		s__GSINITTAIL	3BCD
+		s__GSFINAL	3BCE
 		.OAM	C000
 		s__DATA	C0A0
 		s__BSS	C0D3
@@ -193,21 +193,21 @@ AREA .  .ABS.
 AREA _CODE
 	RADIX HEX
 	BASE 0200
-	SIZE 1CEF
+	SIZE 35D3
 	ATTRIB REL CON
 	GLOBALS
 		_spawnTetromino	0200
 		_moveTetromino	0B9F
 		_rotateClockwise	0D3C
-		_delayMethod	1D7C
-		_spritepalette	1D8C
-		_main	1DC4
-		_set_sprite_palette_entry	1E68
-		_set_bkg_palette_entry	1E6D
-		.set_palette_entry	1E70
-		_cpu_slow	1E8C
-		_cpu_fast	1EA7
-		_cgb_compatibility	1EAE
+		_delayMethod	3660
+		_spritepalette	3670
+		_main	36A8
+		_set_sprite_palette_entry	374C
+		_set_bkg_palette_entry	3751
+		.set_palette_entry	3754
+		_cpu_slow	3770
+		_cpu_fast	378B
+		_cgb_compatibility	3792
 AREA _HEADER0
 	RADIX HEX
 	BASE 0000
@@ -307,100 +307,100 @@ AREA _HEADER12
 	ATTRIB ABS CON
 AREA _HOME
 	RADIX HEX
-	BASE 1EEF
+	BASE 37D3
 	SIZE 01A8
 	ATTRIB REL CON
 	GLOBALS
-		.set_mode	1EEF
-		.remove_VBL	1EFF
-		.remove_LCD	1F05
-		.remove_TIM	1F0B
-		.remove_SIO	1F11
-		.remove_JOY	1F17
-		.add_VBL	1F1D
-		.add_LCD	1F23
-		.add_TIM	1F29
-		.add_SIO	1F2F
-		.add_JOY	1F35
-		.remove_int	1F3B
-		.add_int	1F5A
-		.wait_vbl_done	1F76
-		_wait_vbl_done	1F76
-		_display_off	1F8D
-		.display_off	1F8D
-		.serial_IO	1FAE
-		_mode	1FDD
-		_get_mode	1FE6
-		_enable_interrupts	1FEB
-		_disable_interrupts	1FED
-		_reset	1FEF
-		.reset	1FEF
-		_set_interrupts	1FF5
-		_remove_VBL	2000
-		_remove_LCD	200B
-		_remove_TIM	2016
-		_remove_SIO	2021
-		_remove_JOY	202C
-		_add_VBL	2037
-		_add_LCD	2042
-		_add_TIM	204D
-		_add_SIO	2058
-		_add_JOY	2063
-		_clock	206E
-		__printTStates	2077
-		banked_call	2078
-		banked_ret	208F
+		.set_mode	37D3
+		.remove_VBL	37E3
+		.remove_LCD	37E9
+		.remove_TIM	37EF
+		.remove_SIO	37F5
+		.remove_JOY	37FB
+		.add_VBL	3801
+		.add_LCD	3807
+		.add_TIM	380D
+		.add_SIO	3813
+		.add_JOY	3819
+		.remove_int	381F
+		.add_int	383E
+		.wait_vbl_done	385A
+		_wait_vbl_done	385A
+		_display_off	3871
+		.display_off	3871
+		.serial_IO	3892
+		_mode	38C1
+		_get_mode	38CA
+		_enable_interrupts	38CF
+		_disable_interrupts	38D1
+		_reset	38D3
+		.reset	38D3
+		_set_interrupts	38D9
+		_remove_VBL	38E4
+		_remove_LCD	38EF
+		_remove_TIM	38FA
+		_remove_SIO	3905
+		_remove_JOY	3910
+		_add_VBL	391B
+		_add_LCD	3926
+		_add_TIM	3931
+		_add_SIO	393C
+		_add_JOY	3947
+		_clock	3952
+		__printTStates	395B
+		banked_call	395C
+		banked_ret	3973
 AREA _BASE
 	RADIX HEX
-	BASE 2097
+	BASE 397B
 	SIZE 019A
 	ATTRIB REL CON
 	GLOBALS
-		.set_sprite_prop	2097
-		_set_sprite_prop	20A4
-		.mv_sprite	20AF
-		_move_sprite	20BE
-		_set_win_data	20CB
-		_set_bkg_data	20CB
-		_set_sprite_data	20D3
-		.scroll_sprite	2149
-		_scroll_sprite	215A
-		.padup	2167
-		_waitpadup	2167
-		.jpad	2177
-		.wait_pad	21A4
-		_joypad	21AB
-		_waitpad	21B0
-		.set_sprite_tile	21BA
-		_set_sprite_tile	21C7
-		_set_sprite_palette	21D2
-		_set_bkg_palette	21D7
-		.set_palette	21DA
-		.get_sprite_prop	21F9
-		_get_sprite_prop	2206
-		.copy_vram	220F
-		_get_data	221E
-		_set_data	221E
+		.set_sprite_prop	397B
+		_set_sprite_prop	3988
+		.mv_sprite	3993
+		_move_sprite	39A2
+		_set_win_data	39AF
+		_set_bkg_data	39AF
+		_set_sprite_data	39B7
+		.scroll_sprite	3A2D
+		_scroll_sprite	3A3E
+		.padup	3A4B
+		_waitpadup	3A4B
+		.jpad	3A5B
+		.wait_pad	3A88
+		_joypad	3A8F
+		_waitpad	3A94
+		.set_sprite_tile	3A9E
+		_set_sprite_tile	3AAB
+		_set_sprite_palette	3AB6
+		_set_bkg_palette	3ABB
+		.set_palette	3ABE
+		.get_sprite_prop	3ADD
+		_get_sprite_prop	3AEA
+		.copy_vram	3AF3
+		_get_data	3B02
+		_set_data	3B02
 AREA _LIT
 	RADIX HEX
-	BASE 2231
+	BASE 3B15
 	SIZE 0000
 	ATTRIB REL CON
 AREA _GSINIT
 	RADIX HEX
-	BASE 2231
+	BASE 3B15
 	SIZE 00B8
 	ATTRIB REL CON
 	GLOBALS
-		gsinit	2231
+		gsinit	3B15
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 22E9
+	BASE 3BCD
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 22EA
+	BASE 3BCE
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
@@ -844,12 +844,11 @@ MODULES
 	FILE c:\gbdk\lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
 	FILE Tetrominos.o
-		NAME C__Users_Ashley_AppData_Local_TeÅòAgs
-
+		NAME C__Users_Ashley_AppData_Local_TeèNK8s%
 	FILE PieceManipulation.o
-		NAME C__Users_Ashley_AppData_Local_TeAòÅg.
+		NAME C__Users_Ashley_AppData_Local_Te
 	FILE main.o
-		NAME C__Users_Ashley_AppData_Local_TeâòYg
+		NAME C__Users_Ashley_AppData_Local_Te˜NC8∞$
 LIBRARIES
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE set_prop.o

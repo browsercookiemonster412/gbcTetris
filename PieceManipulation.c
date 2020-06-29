@@ -1,7 +1,6 @@
 #include <gb/gb.h>
-#include <gb/gb.h>
 #include <gb/cgb.h>
-#include <stdio.h>
+
 /*
 Type Definitions
 	O = 0,
@@ -288,7 +287,7 @@ void rotateClockwise(struct Tetromino* piece)
 {
 	switch (piece->tetrominoType)
 	{
-		case 0:
+		case 0:		//O
 			switch (piece->orientation)
 			{
 				case 0:
@@ -326,7 +325,6 @@ void rotateClockwise(struct Tetromino* piece)
 					scroll_sprite(piece->spriteIds[1], -8, 0);
 					scroll_sprite(piece->spriteIds[2], 8, 0);
 					scroll_sprite(piece->spriteIds[3], 0, -8);
-
 					
 					piece->T0y += 8;
 					piece->T1x -= 8;
@@ -379,7 +377,6 @@ void rotateClockwise(struct Tetromino* piece)
 					scroll_sprite(piece->spriteIds[2], -8, 0);
 					scroll_sprite(piece->spriteIds[3], 0, 8);
 
-
 					piece->T0y -= 8;
 					piece->T1x += 8;
 					piece->T2x -= 8;
@@ -392,7 +389,7 @@ void rotateClockwise(struct Tetromino* piece)
 			
 			break;
 		
-		case 1:
+		case 1:		//L
 			switch (piece->orientation)
 			{
 				case 0:
@@ -459,7 +456,6 @@ void rotateClockwise(struct Tetromino* piece)
 					scroll_sprite(piece->spriteIds[2], 0, 0);
 					scroll_sprite(piece->spriteIds[3], 8, -8);
 
-
 					piece->T0x -= 16;
 					piece->T1x -= 8;
 					piece->T1y += 8;
@@ -499,7 +495,7 @@ void rotateClockwise(struct Tetromino* piece)
 
 			break;
 
-		case 2:
+		case 2:		//Z
 			switch (piece->orientation)
 			{
 			case 0:
@@ -539,7 +535,6 @@ void rotateClockwise(struct Tetromino* piece)
 				scroll_sprite(piece->spriteIds[2], 0, 0);
 				scroll_sprite(piece->spriteIds[3], -8, -8);
 
-
 				piece->T0y += 16;
 				piece->T1x -= 8;
 				piece->T1y += 8;
@@ -565,7 +560,6 @@ void rotateClockwise(struct Tetromino* piece)
 				scroll_sprite(piece->spriteIds[1], -8, -8);
 				scroll_sprite(piece->spriteIds[2], 0, 0);
 				scroll_sprite(piece->spriteIds[3], 8, -8);
-
 
 				piece->T0x -= 16;
 				piece->T1x -= 8;
@@ -595,6 +589,434 @@ void rotateClockwise(struct Tetromino* piece)
 
 				piece->T0y -= 16;
 				piece->T1x += 8;
+				piece->T1y -= 8;
+				piece->T3x += 8;
+				piece->T3y += 8;
+
+				piece->orientation = 0;
+
+				break;
+			}
+
+			break;
+
+		case 3:		//J
+			switch (piece->orientation)
+			{
+			case 0:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				scroll_sprite(piece->spriteIds[0], 16, 0);
+				scroll_sprite(piece->spriteIds[1], 8, -8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], -8, 8);
+
+				piece->T0x += 16;
+				piece->T1x += 8;
+				piece->T1y -= 8;
+				piece->T3x -= 8;
+				piece->T3y += 8;
+
+				piece->orientation = 1;
+
+				break;
+
+			case 1:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) | S_FLIPY);
+
+				scroll_sprite(piece->spriteIds[0], 0, 16);
+				scroll_sprite(piece->spriteIds[1], 8, 8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], -8, -8);
+
+				piece->T0y += 16;
+				piece->T1x += 8;
+				piece->T1y += 8;
+				piece->T3x -= 8;
+				piece->T3y -= 8;
+
+				piece->orientation = 2;
+
+				break;
+
+			case 2:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				set_sprite_prop(piece->spriteIds[0], (get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], (get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], (get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], (get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPY) | S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], -16, 0);
+				scroll_sprite(piece->spriteIds[1], -8, 8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], 8, -8);
+
+				piece->T0x -= 16;
+				piece->T1x -= 8;
+				piece->T1y += 8;
+				piece->T3x += 8;
+				piece->T3y -= 8;
+
+				piece->orientation = 3;
+
+				break;
+
+			case 3:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], 0, -16);
+				scroll_sprite(piece->spriteIds[1], -8, -8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], 8, 8);
+
+				piece->T0y -= 16;
+				piece->T1x -= 8;
+				piece->T1y -= 8;
+				piece->T3x += 8;
+				piece->T3y += 8;
+
+				piece->orientation = 0;
+
+				break;
+			}
+
+			break;
+
+		case 4:		//I
+			switch (piece->orientation)
+			{
+			case 0:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				scroll_sprite(piece->spriteIds[0], 16, -8);
+				scroll_sprite(piece->spriteIds[1], 8, 0);
+				scroll_sprite(piece->spriteIds[2], 0, 8);
+				scroll_sprite(piece->spriteIds[3], -8, 16);
+
+				piece->T0x += 16;
+				piece->T0y -= 8;
+				piece->T1x += 8;
+				piece->T2y += 8;
+				piece->T3x -= 8;
+				piece->T3y += 16;
+
+				piece->orientation = 1;
+
+				break;
+
+			case 1:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) | S_FLIPY);
+
+				scroll_sprite(piece->spriteIds[0], 8, 16);
+				scroll_sprite(piece->spriteIds[1], 0, 8);
+				scroll_sprite(piece->spriteIds[2], -8, 0);
+				scroll_sprite(piece->spriteIds[3], -16, -8);
+
+				piece->T0x += 8;
+				piece->T0y += 16;
+				piece->T1y += 8;
+				piece->T2x -= 8;
+				piece->T3x -= 16;
+				piece->T3y -= 8;
+
+				piece->orientation = 2;
+
+				break;
+
+			case 2:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				set_sprite_prop(piece->spriteIds[0], (get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], (get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], (get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], (get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPY) | S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], -16, 8);
+				scroll_sprite(piece->spriteIds[1], -8, 0);
+				scroll_sprite(piece->spriteIds[2], 0, -8);
+				scroll_sprite(piece->spriteIds[3], 8, -16);
+
+				piece->T0x -= 16;
+				piece->T0y += 8;
+				piece->T1x -= 8;
+				piece->T2y -= 8;
+				piece->T3x += 8;
+				piece->T3y -= 16;
+
+				piece->orientation = 3;
+
+				break;
+
+			case 3:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], -8, -16);
+				scroll_sprite(piece->spriteIds[1], 0, -8);
+				scroll_sprite(piece->spriteIds[2], 8, 0);
+				scroll_sprite(piece->spriteIds[3], 16, 8);
+
+				piece->T0x -= 8;
+				piece->T0y -= 16;
+				piece->T1y -= 8;
+				piece->T2x += 8;
+				piece->T3x += 16;
+				piece->T3y += 8;
+
+				piece->orientation = 0;
+
+				break;
+			}
+
+			break;
+
+		case 5:		//S
+			switch (piece->orientation)
+			{
+			case 0:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				scroll_sprite(piece->spriteIds[0], 8, 8);
+				scroll_sprite(piece->spriteIds[1], 0, 16);
+				scroll_sprite(piece->spriteIds[2], 8, -8);
+				scroll_sprite(piece->spriteIds[3], 0, 0);
+
+				piece->T0x += 8;
+				piece->T0y += 8;
+				piece->T1y += 16;
+				piece->T2x += 8;
+				piece->T2y -= 8;
+
+				piece->orientation = 1;
+
+				break;
+
+			case 1:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) | S_FLIPY);
+
+				scroll_sprite(piece->spriteIds[0], -8, 8);
+				scroll_sprite(piece->spriteIds[1], -16, 0);
+				scroll_sprite(piece->spriteIds[2], 8, 8);
+				scroll_sprite(piece->spriteIds[3], 0, 0);
+
+				piece->T0x -= 8;
+				piece->T0y += 8;
+				piece->T1x -= 16;
+				piece->T2x += 8;
+				piece->T2y += 8;
+
+				piece->orientation = 2;
+
+				break;
+
+			case 2:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				set_sprite_prop(piece->spriteIds[0], (get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], (get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], (get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], (get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPY) | S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], -8, -8);
+				scroll_sprite(piece->spriteIds[1], 0, -16);
+				scroll_sprite(piece->spriteIds[2], -8, 8);
+				scroll_sprite(piece->spriteIds[3], 0, 0);
+
+				piece->T0x -= 8;
+				piece->T0y -= 8;
+				piece->T1y -= 16;
+				piece->T2x -= 8;
+				piece->T2y += 8;
+
+				piece->orientation = 3;
+
+				break;
+
+			case 3:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], 8, -8);
+				scroll_sprite(piece->spriteIds[1], 16, 0);
+				scroll_sprite(piece->spriteIds[2], -8, -8);
+				scroll_sprite(piece->spriteIds[3], 0, 0);
+
+				piece->T0x += 8;
+				piece->T0y -= 8;
+				piece->T1x += 16;
+				piece->T2x -= 8;
+				piece->T2y -= 8;
+
+				piece->orientation = 0;
+
+				break;
+			}
+
+			break;
+
+		case 6:		//T
+			switch (piece->orientation)
+			{
+			case 0:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				scroll_sprite(piece->spriteIds[0], 8, 8);
+				scroll_sprite(piece->spriteIds[1], 8, -8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], -8, 8);
+
+				piece->T0x += 8;
+				piece->T0y += 8;
+				piece->T1x += 8;
+				piece->T1y -= 8;
+				piece->T3x -= 8;
+				piece->T3y += 8;
+
+				piece->orientation = 1;
+
+				break;
+
+			case 1:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) | S_FLIPY);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) | S_FLIPY);
+
+				scroll_sprite(piece->spriteIds[0], -8, 8);
+				scroll_sprite(piece->spriteIds[1], 8, 8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], -8, -8);
+
+				piece->T0x -= 8;
+				piece->T0y += 8;
+				piece->T1x += 8;
+				piece->T1y += 8;
+				piece->T3x -= 8;
+				piece->T3y -= 8;
+
+				piece->orientation = 2;
+
+				break;
+
+			case 2:
+				set_sprite_tile(piece->spriteIds[0], 1);
+				set_sprite_tile(piece->spriteIds[1], 1);
+				set_sprite_tile(piece->spriteIds[2], 1);
+				set_sprite_tile(piece->spriteIds[3], 1);
+
+				set_sprite_prop(piece->spriteIds[0], (get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], (get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], (get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPY) | S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], (get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPY) | S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], -8, -8);
+				scroll_sprite(piece->spriteIds[1], -8, 8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], 8, -8);
+
+				piece->T0x -= 8;
+				piece->T0y -= 8;
+				piece->T1x -= 8;
+				piece->T1y += 8;
+				piece->T3x += 8;
+				piece->T3y -= 8;
+
+				piece->orientation = 3;
+
+				break;
+
+			case 3:
+				set_sprite_tile(piece->spriteIds[0], 0);
+				set_sprite_tile(piece->spriteIds[1], 0);
+				set_sprite_tile(piece->spriteIds[2], 0);
+				set_sprite_tile(piece->spriteIds[3], 0);
+
+				set_sprite_prop(piece->spriteIds[0], get_sprite_prop(piece->spriteIds[0]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[1], get_sprite_prop(piece->spriteIds[1]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[2], get_sprite_prop(piece->spriteIds[2]) & ~S_FLIPX);
+				set_sprite_prop(piece->spriteIds[3], get_sprite_prop(piece->spriteIds[3]) & ~S_FLIPX);
+
+				scroll_sprite(piece->spriteIds[0], 8, -8);
+				scroll_sprite(piece->spriteIds[1], -8, -8);
+				scroll_sprite(piece->spriteIds[2], 0, 0);
+				scroll_sprite(piece->spriteIds[3], 8, 8);
+
+				piece->T0x += 8;
+				piece->T0y -= 8;
+				piece->T1x -= 8;
 				piece->T1y -= 8;
 				piece->T3x += 8;
 				piece->T3y += 8;
