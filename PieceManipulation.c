@@ -456,7 +456,7 @@ void rotateClockwise(struct Tetromino* piece)
 					scroll_sprite(piece->spriteIds[2], 0, 0);
 					scroll_sprite(piece->spriteIds[3], 8, -8);
 
-					piece->T0x -= 16;
+					piece->T0y -= 16;
 					piece->T1x -= 8;
 					piece->T1y += 8;
 					piece->T3x += 8;
@@ -482,7 +482,7 @@ void rotateClockwise(struct Tetromino* piece)
 					scroll_sprite(piece->spriteIds[2], 0, 0);
 					scroll_sprite(piece->spriteIds[3], 8, 8);
 
-					piece->T0x -= 16;
+					piece->T0x += 16;
 					piece->T1x -= 8;
 					piece->T1y -= 8;
 					piece->T3x += 8;

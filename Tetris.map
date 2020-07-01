@@ -169,45 +169,47 @@ AREA .  .ABS.
 		l__HEADER5	0008
 		l__HEADER1	0010
 		l__HEADER6	0025
-		l__DATA	0033
 		l__HEADER7	0034
 		l__BSS	0058
 		l__HEADER11	0083
-		l__GSINIT	00B8
-		l__BASE	019A
 		l__HOME	01A8
 		s__CODE	0200
-		l__CODE	35D3
-		s__HOME	37D3
-		s__BASE	397B
-		s__LIT	3B15
-		s__GSINIT	3B15
-		s__GSINITTAIL	3BCD
-		s__GSFINAL	3BCE
+		l__BASE	0218
+		l__DATA	0378
+		l__GSINIT	10C6
+		l__CODE	36BB
+		s__HOME	38BB
+		s__BASE	3A63
+		s__LIT	3C7B
+		s__GSINIT	3C7B
+		s__GSINITTAIL	4D41
+		s__GSFINAL	4D42
 		.OAM	C000
 		s__DATA	C0A0
-		s__BSS	C0D3
-		s__HEAP	C12B
+		s__BSS	C418
+		s__HEAP	C470
 		.STACK	E000
 		.refresh_OAM	FF80
 AREA _CODE
 	RADIX HEX
 	BASE 0200
-	SIZE 35D3
+	SIZE 36BB
 	ATTRIB REL CON
 	GLOBALS
 		_spawnTetromino	0200
 		_moveTetromino	0B9F
 		_rotateClockwise	0D3C
 		_delayMethod	3660
-		_spritepalette	3670
-		_main	36A8
-		_set_sprite_palette_entry	374C
-		_set_bkg_palette_entry	3751
-		.set_palette_entry	3754
-		_cpu_slow	3770
-		_cpu_fast	378B
-		_cgb_compatibility	3792
+		_descendRate	3670
+		_spritePalette	3671
+		_backgroundPalette	36A9
+		_main	36E1
+		_set_sprite_palette_entry	3834
+		_set_bkg_palette_entry	3839
+		.set_palette_entry	383C
+		_cpu_slow	3858
+		_cpu_fast	3873
+		_cgb_compatibility	387A
 AREA _HEADER0
 	RADIX HEX
 	BASE 0000
@@ -307,140 +309,151 @@ AREA _HEADER12
 	ATTRIB ABS CON
 AREA _HOME
 	RADIX HEX
-	BASE 37D3
+	BASE 38BB
 	SIZE 01A8
 	ATTRIB REL CON
 	GLOBALS
-		.set_mode	37D3
-		.remove_VBL	37E3
-		.remove_LCD	37E9
-		.remove_TIM	37EF
-		.remove_SIO	37F5
-		.remove_JOY	37FB
-		.add_VBL	3801
-		.add_LCD	3807
-		.add_TIM	380D
-		.add_SIO	3813
-		.add_JOY	3819
-		.remove_int	381F
-		.add_int	383E
-		.wait_vbl_done	385A
-		_wait_vbl_done	385A
-		_display_off	3871
-		.display_off	3871
-		.serial_IO	3892
-		_mode	38C1
-		_get_mode	38CA
-		_enable_interrupts	38CF
-		_disable_interrupts	38D1
-		_reset	38D3
-		.reset	38D3
-		_set_interrupts	38D9
-		_remove_VBL	38E4
-		_remove_LCD	38EF
-		_remove_TIM	38FA
-		_remove_SIO	3905
-		_remove_JOY	3910
-		_add_VBL	391B
-		_add_LCD	3926
-		_add_TIM	3931
-		_add_SIO	393C
-		_add_JOY	3947
-		_clock	3952
-		__printTStates	395B
-		banked_call	395C
-		banked_ret	3973
+		.set_mode	38BB
+		.remove_VBL	38CB
+		.remove_LCD	38D1
+		.remove_TIM	38D7
+		.remove_SIO	38DD
+		.remove_JOY	38E3
+		.add_VBL	38E9
+		.add_LCD	38EF
+		.add_TIM	38F5
+		.add_SIO	38FB
+		.add_JOY	3901
+		.remove_int	3907
+		.add_int	3926
+		.wait_vbl_done	3942
+		_wait_vbl_done	3942
+		_display_off	3959
+		.display_off	3959
+		.serial_IO	397A
+		_mode	39A9
+		_get_mode	39B2
+		_enable_interrupts	39B7
+		_disable_interrupts	39B9
+		_reset	39BB
+		.reset	39BB
+		_set_interrupts	39C1
+		_remove_VBL	39CC
+		_remove_LCD	39D7
+		_remove_TIM	39E2
+		_remove_SIO	39ED
+		_remove_JOY	39F8
+		_add_VBL	3A03
+		_add_LCD	3A0E
+		_add_TIM	3A19
+		_add_SIO	3A24
+		_add_JOY	3A2F
+		_clock	3A3A
+		__printTStates	3A43
+		banked_call	3A44
+		banked_ret	3A5B
 AREA _BASE
 	RADIX HEX
-	BASE 397B
-	SIZE 019A
+	BASE 3A63
+	SIZE 0218
 	ATTRIB REL CON
 	GLOBALS
-		.set_sprite_prop	397B
-		_set_sprite_prop	3988
-		.mv_sprite	3993
-		_move_sprite	39A2
-		_set_win_data	39AF
-		_set_bkg_data	39AF
-		_set_sprite_data	39B7
-		.scroll_sprite	3A2D
-		_scroll_sprite	3A3E
-		.padup	3A4B
-		_waitpadup	3A4B
-		.jpad	3A5B
-		.wait_pad	3A88
-		_joypad	3A8F
-		_waitpad	3A94
-		.set_sprite_tile	3A9E
-		_set_sprite_tile	3AAB
-		_set_sprite_palette	3AB6
-		_set_bkg_palette	3ABB
-		.set_palette	3ABE
-		.get_sprite_prop	3ADD
-		_get_sprite_prop	3AEA
-		.copy_vram	3AF3
-		_get_data	3B02
-		_set_data	3B02
+		.set_sprite_prop	3A63
+		_set_sprite_prop	3A70
+		_set_sprite_palette	3A7B
+		_set_bkg_palette	3A80
+		.set_palette	3A83
+		.mv_sprite	3AA2
+		_move_sprite	3AB1
+		_set_win_data	3ABE
+		_set_bkg_data	3ABE
+		_set_sprite_data	3AC6
+		.scroll_sprite	3B3C
+		_scroll_sprite	3B4D
+		.padup	3B5A
+		_waitpadup	3B5A
+		.jpad	3B6A
+		.wait_pad	3B97
+		_joypad	3B9E
+		_waitpad	3BA3
+		.set_sprite_tile	3BAD
+		_set_sprite_tile	3BBA
+		.get_sprite_prop	3BC5
+		_get_sprite_prop	3BD2
+		.copy_vram	3BDB
+		_get_data	3BEA
+		_set_data	3BEA
+		_set_bkg_tiles	3BFD
+		.set_xy_wtt	3C11
+		.set_xy_btt	3C22
+		.set_xy_tt	3C31
+		_set_tiles	3C62
 AREA _LIT
 	RADIX HEX
-	BASE 3B15
+	BASE 3C7B
 	SIZE 0000
 	ATTRIB REL CON
 AREA _GSINIT
 	RADIX HEX
-	BASE 3B15
-	SIZE 00B8
+	BASE 3C7B
+	SIZE 10C6
 	ATTRIB REL CON
 	GLOBALS
-		gsinit	3B15
+		gsinit	3C7B
 AREA _GSINITTAIL
 	RADIX HEX
-	BASE 3BCD
+	BASE 4D41
 	SIZE 0001
 	ATTRIB REL CON
 AREA _GSFINAL
 	RADIX HEX
-	BASE 3BCE
+	BASE 4D42
 	SIZE 0000
 	ATTRIB REL CON
 AREA _DATA
 	RADIX HEX
 	BASE C0A0
-	SIZE 0033
+	SIZE 0378
 	ATTRIB REL CON
 	GLOBALS
-		_TetrominosCGB	C0A0
-		_Tetrominos	C0A2
-		_spawnPositionx	C0C2
-		_spawnPositiony	C0C3
-		_keyDown	C0C4
-		_activePiece	C0C5
+		_BackgroundTilesCGB	C0A0
+		_BackgroundTiles	C0A6
+		_BackgroundMapPLN0	C106
+		_BackgroundMapPLN1	C26E
+		_TetrominosCGB	C3D6
+		_Tetrominos	C3D8
+		_spawnPositionx	C3F8
+		_spawnPositiony	C3F9
+		_keyDown	C3FA
+		_descendTimer	C3FB
+		_activePiece	C3FC
+		_nextPiece	C40A
 AREA _BSS
 	RADIX HEX
-	BASE C0D3
+	BASE C418
 	SIZE 0058
 	ATTRIB REL CON
 	GLOBALS
-		__cpu	C0D3
-		.mode	C0D4
-		__io_out	C0D5
-		__io_in	C0D6
-		__io_status	C0D7
-		.vbl_done	C0D8
-		_sys_time	C0D9
-		.sys_time	C0D9
-		.int_0x40	C0DB
-		.int_0x48	C0EB
-		.int_0x50	C0FB
-		.int_0x58	C10B
-		.int_0x60	C11B
+		__cpu	C418
+		.mode	C419
+		__io_out	C41A
+		__io_in	C41B
+		__io_status	C41C
+		.vbl_done	C41D
+		_sys_time	C41E
+		.sys_time	C41E
+		.int_0x40	C420
+		.int_0x48	C430
+		.int_0x50	C440
+		.int_0x58	C450
+		.int_0x60	C460
 AREA _HEAP
 	RADIX HEX
-	BASE C12B
+	BASE C470
 	SIZE 0000
 	ATTRIB REL CON
 	GLOBALS
-		_malloc_heap_start	C12B
+		_malloc_heap_start	C470
 AREA _HRAM13
 	RADIX HEX
 	BASE 0000
@@ -843,15 +856,21 @@ AREA .  .ABS.
 MODULES
 	FILE c:\gbdk\lib/small/asxxxx/gb/crt0.o
 		NAME Runtime
+	FILE BackgroundTiles.o
+		NAME C__Users_Ashley_AppData_Local_Te ï°0
+	FILE BackgroundMap.o
+		NAME C__Users_Ashley_AppData_Local_Te⁄ï±0
 	FILE Tetrominos.o
-		NAME C__Users_Ashley_AppData_Local_TeèNK8s%
+		NAME C__Users_Ashley_AppData_Local_Terï0
 	FILE PieceManipulation.o
-		NAME C__Users_Ashley_AppData_Local_Te
+		NAME C__Users_Ashley_AppData_Local_Te:ïQ0
 	FILE main.o
-		NAME C__Users_Ashley_AppData_Local_Te˜NC8∞$
+		NAME C__Users_Ashley_AppData_Local_Te⁄î±1
 LIBRARIES
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE set_prop.o
+	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
+		MODULE cgb.o
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE mv_spr.o
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
@@ -865,11 +884,13 @@ LIBRARIES
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE set_spr.o
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
-		MODULE cgb.o
-	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE get_prop.o
 	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
 		MODULE cpy_data.o
+	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
+		MODULE set_bk_t.o
+	LIBRARY c:\gbdk\lib/small/asxxxx/gb/gb.lib
+		MODULE set_xy_t.o
 USERBASEDEF
 	_CODE=0x0200
 	_DATA=0xC0A0
